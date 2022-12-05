@@ -175,16 +175,16 @@ import * as Yup from "yup"
     object-fit: cover;
     `
 export default function App () {
-    const [storedMovies, setStoredMovies]  = useState(JSON.parse(localStorage.getItem("movies")))
-    if (storedMovies == null) {
-        setStoredMovies([])
-    }
+    const [storedMovies, setStoredMovies]  = useState([])
     useEffect(() => {
-    }, [storedMovies])
+        if (JSON.parse(localStorage.getItem("movies")) != null) {
+            setStoredMovies(JSON.parse(localStorage.getItem("movies")))
+        }
+    }, [])
     const movieArr = storedMovies.map((movie, index) => {
         return <Movie key={nanoid()}>
             <MovieDiv>
-                <MovieImage src={String(movie.imageLink)}/>
+                <MovieImage src={String(movie.imageLink)} onError={(event) => event.target.style.display = "none"}/>
                 <MovieNameText>{movie.name}</MovieNameText>
                 <MovieVerdictText>{movie.verdict}</MovieVerdictText>
                 <MovieCommentText>{movie.comment}</MovieCommentText>
