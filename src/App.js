@@ -242,8 +242,8 @@ export default function App () {
                     <StyledIcon icon={faX} onClick={() => setPopUpToggle(!popUpToggle)}/>
                     <Formik initialValues={{name:"", comment:"", verdict:"", imageLink: ""}}
                     validationSchema={Yup.object({
-                        name: Yup.string().max(30, ">30").required("*"),
-                        comment: Yup.string().max(100, ">100").required("*"),
+                        name: Yup.string().max(60, ">60").required("*"),
+                        comment: Yup.string().max(300, ">300").required("*"),
                         verdict: Yup.string().required("*"),
                         imageLink: Yup.string().required("*")
                     })}
