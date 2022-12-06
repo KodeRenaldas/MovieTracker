@@ -189,7 +189,7 @@ export default function App () {
                 <MovieVerdictText>{movie.verdict}</MovieVerdictText>
                 <MovieCommentText>{movie.comment}</MovieCommentText>
                 <StyledIcon icon={faTrash} style={{width: "15px", height: "15px", gridArea: "trash"}} onClick={() => {
-                    storedMovies.pop(index)
+                    storedMovies.splice(index, 1)
                     localStorage.setItem("movies", JSON.stringify(storedMovies))
                     setStoredMovies(JSON.parse(localStorage.getItem("movies")))
                 }}/>
@@ -200,7 +200,7 @@ export default function App () {
         const [field, meta] = useField(props)
         return (
             <Wrapper>
-                <FormInput {...field} {...props}/>
+                <FormInput {...field} {...props} autoComplete="off"/>
                 {meta.touched && meta.error?(
                     <FormError>{meta.error}</FormError>
                 ):null}
